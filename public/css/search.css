@@ -1,0 +1,207 @@
+@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css");
+* {
+  font-family: Roboto, arial, sans-serif
+}
+
+.cast {
+  margin-left: 120px;
+}
+
+body {
+  padding-top: 50px;
+}
+
+.form-control {
+  border-radius: 0px;
+}
+
+.algolia-autocomplete {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-input, .algolia-autocomplete .aa-hint {
+  width: 100%;
+}
+
+.algolia-autocomplete .aa-hint {
+  color: #999;
+}
+
+.algolia-autocomplete .aa-dropdown-menu {
+  width: 107.6%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion {
+  cursor: pointer;
+  padding: 5px 4px;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion.aa-cursor {
+  background-color: #B2D7FF;
+}
+
+.algolia-autocomplete .aa-dropdown-menu .aa-suggestion em {
+  font-weight: bold;
+  font-style: normal;
+  color: #5890FF;
+}
+
+#search-input {
+  border-radius: 4px;
+}
+
+.stylish-input-group .input-group-addon {
+  background: white !important;
+}
+
+.stylish-input-group .form-control {
+  border-right: 0;
+  box-shadow: 0 0 0;
+  border-color: #ccc;
+}
+
+.stylish-input-group button {
+  border: 0;
+  background: transparent;
+}
+
+.input-group-addon {
+  padding: 6px 18px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  color: #888;
+  text-align: center;
+  background-color: #eee;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.dir {
+  font-size: 12px;
+  font-style: italic;
+  color: #888;
+}
+
+div.panel {
+  border: 1px solid #ddd !important;
+  box-shadow: none !important;
+}
+
+.panel-heading {
+  color: #111;
+}
+
+.panel-body {
+  padding: 0px;
+}
+
+.boximg {
+  position: relative;
+  overflow: hidden;
+}
+
+.boximg img {
+  transition: all ease-in 500ms;
+}
+
+.boximg img:hover {
+  transform: scale(1.3, 1.3);
+  cursor: pointer;
+}
+
+.boximg:hover {
+  border: 0px solid #fff;
+}
+
+.date {
+  left: 0;
+  position: absolute;
+  top: 15px;
+  padding: 5px;
+  background-color: white;
+  opacity: 0;
+  transition: all ease-in 300ms;
+  color: #222;
+}
+
+.likebut {
+  background: none repeat scroll 0 0 teal;
+  height: 25px;
+  padding: 7px;
+  position: absolute;
+  right: 5px;
+  top: 130px;
+  width: 25px;
+  opacity: 0.4;
+  transition: all ease-in 300ms;
+}
+
+.panel-footer {
+  font-size: 12px;
+}
+
+.panel-footer> p {
+  padding: 0px;
+  margin: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.boximg:hover .date {
+  opacity: 1;
+}
+
+.boximg:hover .likebut {
+  opacity: 1;
+}
+
+.panel-footer {
+  padding: 10px 15px;
+  background: none;
+}
+
+.info-container> p {
+  margin-bottom: 3px;
+  font-size: 13px;
+}
+
+.infolabel {
+  font-weight: 700;
+}
+
+.infovalue {
+  display: block;
+}
+
+div.detail {
+  margin-bottom: 3px !important;
+  font-size: 13px !important;
+}
+
+.modal.fade .modal-dialog {
+  -webkit-transform: scale(0.1);
+  -moz-transform: scale(0.1);
+  -ms-transform: scale(0.1);
+  transform: scale(0.1);
+  top: 300px;
+  opacity: 0;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+.modal.fade.in .modal-dialog {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+  -webkit-transform: translate3d(0, -300px, 0);
+  transform: translate3d(0, -300px, 0);
+  opacity: 1;
+}
+
