@@ -9,16 +9,25 @@
         <link rel="stylesheet" href="{{ asset('/css/search.css') }}">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/instantsearch.js/1/instantsearch.min.css" />
-        <title>Movie Finder</title>
+        <link rel="icon" type="image/gif/png" href="{{ asset('/images/m.png') }}">
+        <title>Movie Stack</title>
     </head>
-    <body>
+    <body v-cloak>
         <div class="container">
             <div class="col-sm-10 col-xs-12 col-sm-offset-1">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div id="">
-                            <h2 style="font-family: 'Budmo Jiggler'">Movie Finder</h2>
-                            <br>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="row">
+                                <span style="font-family: 'Budmo Jiggler'; font-size: 40px">Mo<span style="font-family: 'Budmo Jiggler'; color: dodgerblue">v</span>ie St<span style="color: red;font-family: 'Budmo Jiggler'">a</span>ck
+                                </span>
+                                <span style="font-size: 15px; color: cadetblue; display: inline-block;"><i>world's largest movie station ...</i></span>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="input-group stylish-input-group aa-input-container" id="aa-input-container">
                                 <input id="search-input" type="search" name="search" placeholder="Search your movie.." autocomplete="off" required="required" class="form-control" v-model="query">
                                 <span class="input-group-addon" style="padding-left: 20px">
@@ -27,13 +36,14 @@
                                 </button>  
                                 </span>
                             </div>
-                            <div v-if='result'><i>Total <strong>@{{movies.length}}</strong> result found</i></div>
+                            <div v-if="movies.length > 0"><i>Total <strong style="color: dodgerblue">@{{movies.length}}</strong> result found</i></div>
+                            <div v-else></div>
                         </div>
                     </div>
                 </div>
                 <br><br>
                 <div class='row'>
-                    <div>
+                    <div class="row">
                         <div class="modal fade" id="demo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-lg">
                                 <div class="modal-content">
@@ -124,36 +134,35 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-sm-12">
-                        <div v-if='loading'>
-                            <center><img style='width: 120px; height: 120px' src="{{ asset('/images/bc22e0b7c3.loader.gif') }}"></center>
-                        </div>
-                        <div class="alert alert-danger" role="alert" v-if="error">
-                            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                            @{{ error }}
-                        </div>
-                        <div id="movies" class="row list-group">
-                            <div id="" class="col-sm-4 col-xs-12" v-for="movie in movies">
-                                <div class="panel">
-                                    <div class="panel-body">
-                                        <div class="boximg">
-                                            <img data-toggle="modal" data-target="#demo"  @click='getInfo(movie.id)' style='height: 200px; width: 100%; border-top-right-radius: 4px; border-top-left-radius: 4px' alt='image' src="@{{movie.image}}" class="img-responsive">
-                                        <div class='panel-footer' style="background-color: #ddd; color: #111">
-                                            <p style='font-size: 14px; font-weight: bold; margin-bottom: 7px'><a href="@{{movie.url}}">@{{ movie.title }}</a></p>
-                                            <p>Director : @{{ movie.director }}</p>
-                                            <!-- <p>Realesed : @{{ movie.release_date }}</p> -->
-                                            <!-- <p>Casts : @{{ movie.cast }}</p> -->
-                                            <p>Genre : @{{ movie.genres }}</p><!-- 
-                                            <p>Runtime : @{{ movie.runtime }}</p>
-                                            <p>Ratings : @{{ movie.ratings }} / 10</p> -->
-                                            <p>Page Rank : @{{ movie.rank }}</p>
+                        <div class="col-sm-12">
+                            <div v-if='loading'>
+                                <center><img style='width: 120px; height: 120px' src="{{ asset('/images/bc22e0b7c3.loader.gif') }}"></center>
+                            </div>
+                            <center style='font-weight: bold' class="alert" role="alert" v-if="error">
+                                <img src="{{ asset('/images/sad.png') }}" style="margin-bottom: 15px; width: 100px; display: block;">
+                                @{{ error }}
+                            </center>
+                            <div id="movies" class="row list-group">
+                                <div id="" class="col-sm-4 col-xs-12" v-for="movie in movies | paginate">
+                                    <div class="panel">
+                                        <div class="panel-body">
+                                            <div class="boximg">
+                                                <img data-toggle="modal" data-target="#demo"  @click='getInfo(movie.id)' style='height: 200px; width: 100%; border-top-right-radius: 4px; border-top-left-radius: 4px' alt='image' src="@{{movie.image}}" class="img-responsive">
+                                            <div class='panel-footer' style="background-color: #ddd; color: #111">
+                                                <p style='font-size: 14px; font-weight: bold; margin-bottom: 7px'><a href="@{{movie.url}}">@{{ movie.title }}</a></p>
+                                                <p>Director : @{{ movie.director }}</p>
+                                                <!-- <p>Realesed : @{{ movie.release_date }}</p> -->
+                                                <!-- <p>Casts : @{{ movie.cast }}</p> -->
+                                                <p>Genre : @{{ movie.genres }}</p><!-- 
+                                                <p>Runtime : @{{ movie.runtime }}</p>
+                                                <p>Ratings : @{{ movie.ratings }} / 10</p> -->
+                                                <p>Page Rank : @{{ movie.rank }}</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="pagination-container"></div>
                     </div>
                 </div>
             </div>

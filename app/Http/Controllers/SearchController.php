@@ -15,16 +15,24 @@ class SearchController extends Controller
 
     public function search(Request $request)
     {
-        $error = ['error' => 'No results found, please try with different keywords.'];
+        $error = ['error' => 'No results found, please try with different title, genre, director or casts.'];
 
         if($request->has('q')) {
+            $terms = $request->get('q');
+            $terms_array = explode(' ', $terms);
+            // $formatted_terms_array = $this->formatTerms($terms_array);
+            $query = '';
+            foreach ($terms_array as $key => $value) {
+                $query .= $value . ' ';
+            }
+
             $movies = array();
-            $movies_info = Movie::search($request->get('q'))->get();
+            $movies_info = Movie::search($query)->get();
             // dd($movies_info);
             $decoded_movies = json_decode($movies_info);
             $movies_count = count($decoded_movies);
             if ( $movies_count > 0) {
-                $movies = $this->rank($decoded_movies);
+                $movies = $this->rank($decoded_movies, $terms_array);
             }
 
             return $movies ? $movies : $error;
@@ -50,16 +58,9 @@ class SearchController extends Controller
         return $error;
     }
 
-    private function rank($movies) {
+    private function rank($movies, $terms_array) {
 
         $s = 0.20;
-        
-        $current_path = request()->fullUrl();
-        $request = explode('=', $current_path);
-        $query = $request[1];
-        $terms_array = explode('%20', $query);
-
-        // dd($terms_array);
 
         $terms_of_query = array_count_values($terms_array);
         $N1 = count($movies);
@@ -86,6 +87,20 @@ class SearchController extends Controller
 
         return $movies;
     }
+
+    // private function formatTerms($terms_array) {
+    //     $block_terms = ['genre', 'type', 'director', 'directed', 'by', 'actor', 'actress', 'movies', 'of', 'movie', 'casts', 'cast', 'i', 'want', 'to', 'suggest', 'me', 'ratings', 'rating'];
+    //     $formatted_terms_array = array();
+    //     $i=0;
+    //     foreach ($terms_array as $key => $value) {
+    //         if (!in_array($value, $block_terms)) {
+    //             $formatted_terms_array[$i] = $value;
+    //             $i++; 
+    //         }
+    //     }
+
+    //     return $formatted_terms_array;
+    // }
 
     private function getDocLength($movies){
         $doc_length = 0;

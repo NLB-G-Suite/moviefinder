@@ -1,12 +1,3 @@
-function sleep(time) {
-  var d1 = new Date().getTime();
-  var d2 = new Date().getTime();
-  while (d2 < d1 + time) {
-    d2 = new Date().getTime();
-  }
-  return;
-}
-
 new Vue({
     el: 'body',
 
@@ -17,13 +8,9 @@ new Vue({
 	    loading: false,
 	    error: false,
 	    query: '',
-	    infos: []
+	    infos: [],
 	},
 
-	beforeCompile() {
-		// simulated work
-		sleep(1000);
-	},
 
 	methods: {
 	    browse: function() {

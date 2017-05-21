@@ -3,6 +3,14 @@
   font-family: Roboto, arial, sans-serif
 }
 
+/*.panel-footer {
+  display: none;
+}*/
+
+[v-cloak] {
+  display: none;
+}
+
 .cast {
   margin-left: 120px;
 }
@@ -28,7 +36,7 @@ body {
 }
 
 .algolia-autocomplete .aa-dropdown-menu {
-  width: 107.6%;
+  width: 107.4%;
   background-color: #fff;
   border: 1px solid #ccc;
   border-top: none;
